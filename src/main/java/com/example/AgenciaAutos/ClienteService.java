@@ -1,4 +1,5 @@
 package com.example.AgenciaAutos;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,10 @@ public class ClienteService {
     public Optional<Cliente> update(ObjectId id, Cliente clienteDetails) {
         return clienteRepository.findById(id)
             .map(cliente -> {
-                cliente.setFirstName(clienteDetails.getFirstName()); // Asume que hay un campo nombre
-                // Actualizar otros campos necesarios
+                cliente.setFirstName(clienteDetails.getFirstName());
+                cliente.setLastName(clienteDetails.getLastName());
+                cliente.setEmail(clienteDetails.getEmail());
+                cliente.setPhoneNumber(clienteDetails.getPhoneNumber());
                 return clienteRepository.save(cliente);
             });
     }
@@ -41,5 +44,3 @@ public class ClienteService {
         }
     }
 }
-
-

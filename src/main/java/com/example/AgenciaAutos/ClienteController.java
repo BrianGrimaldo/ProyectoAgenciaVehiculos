@@ -13,13 +13,11 @@ public class ClienteController {
     @Autowired
     private ClienteService clientService;
 
-    // Obtener todos los clientes
     @GetMapping
     public ResponseEntity<List<Cliente>> getAllClients() {
         return ResponseEntity.ok(clientService.findAll());
     }
 
-    // Obtener un cliente por ID
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> getClientById(@PathVariable ObjectId id) {
         return clientService.findById(id)
@@ -27,13 +25,11 @@ public class ClienteController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Crear un nuevo cliente
-    @PostMapping
+    @PostMapping("/CrearC")
     public ResponseEntity<Cliente> createClient(@RequestBody Cliente client) {
         return ResponseEntity.ok(clientService.save(client));
     }
 
-    // Actualizar un cliente existente
     @PutMapping("/{id}")
     public ResponseEntity<?> updateClient(@PathVariable ObjectId id, @RequestBody Cliente client) {
         return clientService.update(id, client)
@@ -41,7 +37,6 @@ public class ClienteController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    // Eliminar un cliente por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable ObjectId id) {
         if (clientService.delete(id)) {

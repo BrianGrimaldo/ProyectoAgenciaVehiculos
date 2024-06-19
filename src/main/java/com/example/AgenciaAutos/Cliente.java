@@ -1,14 +1,15 @@
 package com.example.AgenciaAutos;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
-@Document(collection = "clients")
+@Document(collection = "Cliente")
 @Data
 public class Cliente {
     @Id
-    private String id;
+    private ObjectId id;
     private String firstName;
     private String lastName;
     private String email;
